@@ -17,6 +17,7 @@ public class AppleCreditCardOcr: CreditCardOcrImplementation {
         var numberBox: CGRect?
         var expiryBox: CGRect?
         var nameCandidates: [OcrObject] = []
+       
         AppleOcr.recognizeText(in: image) { results in
             for result in results {
                 let predictedPan = CreditCardOcrPrediction.pan(result.text)

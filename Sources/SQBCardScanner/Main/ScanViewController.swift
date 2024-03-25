@@ -125,8 +125,7 @@ import UIKit
         
         // The forced unwrap here is intentional -- we expect this to crash
         // if someone uses it with an invalid bundle
-        let bundle = CSBundle.bundle()!
-        let storyboard = UIStoryboard(name: "CardScan", bundle: bundle)
+        let storyboard = UIStoryboard(name: "CardScan", bundle: Bundle(for: ScanViewController.self))
         let viewController = storyboard.instantiateViewController(withIdentifier: "scanCardViewController") as! ScanViewController
         viewController.scanDelegate = delegate
         

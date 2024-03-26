@@ -1,8 +1,6 @@
 import CoreGraphics
 import Foundation
 
-@available(iOS 11.2, *)
-
 struct PriorsGen{
     /**
             This struct represents the logic to generate initiail bounding boxes or priors for our implementation of SSD.

@@ -20,7 +20,6 @@ public struct UxFrameConfidenceValues {
     }
 }
 
-
 public enum CenteredCardState {
     case numberSide
     case nonNumberSide

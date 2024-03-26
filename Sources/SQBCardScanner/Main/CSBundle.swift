@@ -1,6 +1,5 @@
 import Foundation
 
-
 public class CSBundle {
     // If you change the bundle name make sure to set these before
     // initializing the library
@@ -11,20 +10,7 @@ public class CSBundle {
     
     // Public for testing
     public static func bundle() -> Bundle? {
-        if cardScanBundle != nil {
-            return cardScanBundle
-        }
-        
-        if let bundle = Bundle(identifier: bundleIdentifier) {
-            return bundle
-        }
-        
-        // as a fall back try getting a named bundle for cases when we deploy as source
-        guard let bundleUrl = Bundle(for: CSBundle.self).url(forResource: namedBundle, withExtension: namedBundleExtension)  else {
-            return nil
-        }
-        
-        return Bundle(url: bundleUrl)
+        return Bundle.module
     }
     
     static func compiledModel(forResource: String, withExtension: String) -> URL? {

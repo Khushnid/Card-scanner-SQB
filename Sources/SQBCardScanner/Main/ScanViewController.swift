@@ -90,7 +90,6 @@ import UIKit
     
     @IBOutlet weak var scanCardLabel: UILabel!
     @IBOutlet weak var positionCardLabel: UILabel!
-    @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var backButtonImageButton: UIButton!
     
@@ -104,7 +103,7 @@ import UIKit
     @IBOutlet weak var torchButtonHeightConstraint: NSLayoutConstraint!
     public var torchButtonSize: CGSize?
     @IBOutlet weak var cornerView: CornerView!
-    var cornerBorderColor = UIColor.green.cgColor
+    var cornerBorderColor = UIColor.white.cgColor
     var denyPermissionTitle = "Need camera access"
     var denyPermissionMessage = "Please enable camera access in your settings to scan your card"
     var denyPermissionButtonText = "OK"
@@ -125,7 +124,7 @@ import UIKit
         
         // The forced unwrap here is intentional -- we expect this to crash
         // if someone uses it with an invalid bundle
-        let storyboard = UIStoryboard(name: "CardScan", bundle: .module)
+        let storyboard = UIStoryboard(name: "CardScan", bundle: CSBundle.bundle()!)
         let viewController = storyboard.instantiateViewController(withIdentifier: "scanCardViewController") as! ScanViewController
         viewController.scanDelegate = delegate
         
@@ -180,8 +179,6 @@ import UIKit
         
         self.scanCardLabel.text = dataSource.scanCard()
         self.positionCardLabel.text = dataSource.positionCard()
-        self.skipButton.setTitle(dataSource.skipButton(), for: .normal)
-        self.backButton.setTitle(dataSource.backButton(), for: .normal)
         
         guard let fullDataSource = dataSource as? FullScanStringsDataSource else {
             return
@@ -215,9 +212,7 @@ import UIKit
         if let font = self.positionCardFont {
             self.positionCardLabel.font = font
         }
-        if let font = self.skipButtonFont {
-            self.skipButton.titleLabel?.font = font
-        }
+        
         if let delta = self.backButtonImageToTextDelta.map({ CGFloat($0.floatValue) }) {
             self.backButtonImageToTextConstraint.constant += delta
         }
@@ -267,12 +262,6 @@ import UIKit
         self.setStrings()
         self.setUiCustomization()
         self.calledDelegate = false
-        
-        if self.allowSkip {
-            self.skipButton.isHidden = false
-        } else {
-            self.skipButton.isHidden = true
-        }
         
         let debugImageView = self.showDebugImageView ? self.debugImageView : nil
         self.setupOnViewDidLoad(regionOfInterestLabel: self.regionOfInterestLabel, blurView: self.blurView, previewView: self.previewView, cornerView: self.cornerView, debugImageView: debugImageView, torchLevel: self.torchLevel)

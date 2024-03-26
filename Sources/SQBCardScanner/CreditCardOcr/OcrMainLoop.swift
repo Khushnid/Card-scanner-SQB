@@ -15,7 +15,6 @@ public protocol MachineLearningLoop: AnyObject {
     func push(fullImage: CGImage, roiRectangle: CGRect)
 }
 
-
 open class OcrMainLoop : MachineLearningLoop {
     public enum AnalyzerType {
         case apple

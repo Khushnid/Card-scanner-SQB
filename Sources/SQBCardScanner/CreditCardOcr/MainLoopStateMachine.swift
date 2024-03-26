@@ -12,6 +12,7 @@ public enum MainLoopState {
     case nameAndExpiry
 }
 
+
 public protocol MainLoopStateMachine {
     func loopState() -> MainLoopState
     func event(prediction: CreditCardOcrPrediction) -> MainLoopState

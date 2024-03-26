@@ -1,7 +1,6 @@
 import CoreGraphics
 import Foundation
 
-
 struct DetectedSSDBox {
     let rect: CGRect
     let label: Int

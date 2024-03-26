@@ -2,16 +2,11 @@ import UIKit
 import AVKit
 import Vision
 
-@available(iOS 11.2, *)
-
 public protocol TestingImageDataSource: AnyObject {
     func nextSquareAndFullImage() -> (CGImage, CGImage)?
 }
 
-@available(iOS 11.2, *)
-
 @objc open class ScanBaseViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AfterPermissions, OcrMainLoopDelegate {
-    
     public weak var testingImageDataSource: TestingImageDataSource?
     @objc public var includeCardImage = false
     @objc public var showDebugImageView = false
@@ -221,8 +216,6 @@ public protocol TestingImageDataSource: AnyObject {
         setNeedsStatusBarAppearanceUpdate()
         regionOfInterestLabel.layer.masksToBounds = true
         regionOfInterestLabel.layer.cornerRadius = self.regionOfInterestCornerRadius
-        regionOfInterestLabel.layer.borderColor = UIColor.white.cgColor
-        regionOfInterestLabel.layer.borderWidth = 2.0
         
         if !ScanBaseViewController.isPadAndFormsheet {
             UIDevice.current.setValue(UIDeviceOrientation.portrait.rawValue, forKey: "orientation")

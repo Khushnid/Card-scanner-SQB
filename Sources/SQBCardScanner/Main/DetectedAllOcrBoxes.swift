@@ -1,7 +1,6 @@
 import CoreGraphics
 import Foundation
 
-
 public struct DetectedAllOcrBoxes {
     var allBoxes: [DetectedSSDOcrBox] = []
     
